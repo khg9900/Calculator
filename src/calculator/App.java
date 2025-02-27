@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+        // Calculator 인스턴스 생성
+        Calculator calculator = new Calculator();
+
         // 스캐너 객체 생성
         Scanner scanner = new Scanner(System.in);
 
@@ -65,28 +68,10 @@ public class App {
             result = 0;
 
             // 연산
-            switch (operator) {
-                case '+' : result = firstNum + secondNum;
-                    break;
-
-                case '-' : result = firstNum - secondNum;
-                    break;
-
-                case '*' : result = firstNum * secondNum;
-                    break;
-
-                case '/' :
-                    if (secondNum != 0){
-                        result = firstNum / secondNum;
-                    } else {
-                        System.out.println("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다.");
-                        continue;
-                    }
-                    break;
-            }
+            result = calculator.calculate(firstNum, secondNum, operator);
 
             // 결과값 출력
-            System.out.println(result);
+            System.out.println("결과: " + result);
 
             // 반복문 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
