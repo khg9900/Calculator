@@ -15,6 +15,9 @@ public class Calculator {
     // 기능
     public Optional<Integer> calculate(int firstNum, int secondNum, char operator) {
 
+        // 초기화
+        this.result = 0;
+
         // 연산
         switch (operator) {
             case '+' : this.result = firstNum + secondNum;
@@ -34,6 +37,9 @@ public class Calculator {
                 }
                 break;
         }
+
+        // 연산 결과 저장
+        this.history.add(this.result);
 
         // 결과값 반환
         return Optional.ofNullable(this.result);

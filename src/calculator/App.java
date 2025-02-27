@@ -15,6 +15,9 @@ public class App {
         int result;
         String exit; // 종료 확인
 
+        // Calculator 인스턴스 생성
+        Calculator calculator = new Calculator();
+
         while (true) {
             // 양의 정수 입력 받기
             while(true){
@@ -62,9 +65,6 @@ public class App {
                 }
             }
 
-            // Calculator 인스턴스 생성
-            Calculator calculator = new Calculator();
-
             // 연산
             Optional<Integer> calculate = calculator.calculate(firstNum, secondNum, operator);
             // 결과값 출력
@@ -75,8 +75,6 @@ public class App {
                 System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
                 continue;
             }
-
-
 
             // 반복문 종료
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료) ");
