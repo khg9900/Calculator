@@ -76,12 +76,24 @@ public class App {
                 continue;
             }
 
+            // Getter 사용
+            calculator.getHistory();
+
             // 반복문 종료
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료) ");
             exit = scanner.nextLine();
             if (exit.equals("exit")) {
                 break;
             }
+
         }
+
+        // Setter 사용
+        calculator.setHistory(0, 0);
+        calculator.getHistory();
+
+        // 연산 결과 삭제 메서드
+        calculator.removeResult();
+        calculator.getHistory();
     }
 }
