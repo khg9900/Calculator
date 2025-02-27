@@ -1,12 +1,10 @@
 package calculator;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        // Calculator 인스턴스 생성
-        Calculator calculator = new Calculator();
-
         // 스캐너 객체 생성
         Scanner scanner = new Scanner(System.in);
 
@@ -14,7 +12,7 @@ public class App {
         int firstNum; // 첫 번째 정수
         int secondNum; // 두 번째 정수
         char operator; // 사칙연산 기호
-        int result; // 결과값
+        int result;
         String exit; // 종료 확인
 
         while (true) {
@@ -64,17 +62,24 @@ public class App {
                 }
             }
 
-            // 초기화
-            result = 0;
+            // Calculator 인스턴스 생성
+            Calculator calculator = new Calculator();
 
             // 연산
-            result = calculator.calculate(firstNum, secondNum, operator);
-
+            Optional<Integer> calculate = calculator.calculate(firstNum, secondNum, operator);
             // 결과값 출력
-            System.out.println("결과: " + result);
+            if (calculate.isPresent()) {
+                result = calculate.get();
+                System.out.println("결과: " + result);
+            } else {
+                System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                continue;
+            }
+
+
 
             // 반복문 종료
-            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
+            System.out.print("더 계산하시겠습니까? (exit 입력 시 종료) ");
             exit = scanner.nextLine();
             if (exit.equals("exit")) {
                 break;
