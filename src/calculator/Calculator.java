@@ -17,19 +17,27 @@ public class Calculator {
 
         // 초기화
         int result = 0;
+        OperatorType op = OperatorType.PLUS;
+
+        // enum
+        for (OperatorType type : OperatorType.values()) {
+            if (type.getOperatorType().equals(String.valueOf(String.valueOf(operator)))) {
+                op = OperatorType.valueOf(type.name());
+            }
+        }
 
         // 연산
-        switch (operator) {
-            case '+' : result = firstNum + secondNum;
+        switch (op) {
+            case PLUS : result = firstNum + secondNum;
                 break;
 
-            case '-' : result = firstNum - secondNum;
+            case MINUS : result = firstNum - secondNum;
                 break;
 
-            case '*' : result = firstNum * secondNum;
+            case MULTI : result = firstNum * secondNum;
                 break;
 
-            case '/' :
+            case DIV :
                 if (secondNum != 0){
                     result = firstNum / secondNum;
                 } else {
