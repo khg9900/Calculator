@@ -9,9 +9,11 @@ public class App {
         // 스캐너 객체 생성
         Scanner scanner = new Scanner(System.in);
 
-        // 변수 선언
+        // 제네릭 객체
         InputNum<Double> firstNum = new InputNum<>(); // 첫 번째 수
         InputNum<Double> secondNum = new InputNum<>(); // 두 번째 수
+
+        // 변수 선언
         char operator; // 사칙연산 기호
         double result; // 연산 결과 저장
         String exit; // 종료 확인
@@ -21,7 +23,7 @@ public class App {
         Calculator<Double> calculator = new Calculator<>();
 
         while (true) {
-            // 양의 정수 입력 받기
+            // 양의 정수 입력 받기 1
             while(true){
                 System.out.print("첫 번째 숫자를 입력하세요: ");
                 try {
@@ -32,7 +34,7 @@ public class App {
                     scanner.next();
                 }
             }
-
+            // 양의 정수 입력 받기 2
             while(true){
                 System.out.print("두 번째 숫자를 입력하세요: ");
                 try {
@@ -71,7 +73,7 @@ public class App {
                 continue;
             }
 
-            // Getter 사용
+            // 연산 기록 조회
             calculator.getHistory();
 
             // 반복문 종료
@@ -83,7 +85,7 @@ public class App {
 
         }
 
-        // Setter 사용
+        // 연산 기록 수정
         calculator.setHistory(0, 0.0);
         calculator.getHistory();
 
@@ -91,7 +93,7 @@ public class App {
         calculator.removeHistory();
         calculator.getHistory();
 
-        // 연산 결과 조회 메서드
+        // 입력 값보다 큰 연산 결과 조회 메서드
         System.out.print("입력한 값보다 큰 연산 기록을 출력합니다: ");
         findNum = scanner.nextDouble();
         calculator.findHistory(findNum);
