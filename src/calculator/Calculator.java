@@ -4,19 +4,19 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class Calculator {
+public class Calculator <T extends Number> {
 
     // 1. 속성
-    private List<Integer> history = new ArrayList<>();
+    private List<Double> history = new ArrayList<>();
 
     // 2. 생성자
 
 
     // 3. 기능
-    public Optional<Integer> calculate(int firstNum, int secondNum, char operator) {
+    public Optional<Double> calculate(T firstNum, T secondNum, char operator) {
 
         // 초기화
-        int result = 0;
+        double result = 0;
         OperatorType op = OperatorType.PLUS;
 
         // enum
@@ -28,18 +28,18 @@ public class Calculator {
 
         // 연산
         switch (op) {
-            case PLUS : result = firstNum + secondNum;
+            case PLUS : result = firstNum.doubleValue() + secondNum.doubleValue();
                 break;
 
-            case MINUS : result = firstNum - secondNum;
+            case MINUS : result = firstNum.doubleValue() - secondNum.doubleValue();
                 break;
 
-            case MULTI : result = firstNum * secondNum;
+            case MULTI : result = firstNum.doubleValue() * secondNum.doubleValue();
                 break;
 
             case DIV :
-                if (secondNum != 0){
-                    result = firstNum / secondNum;
+                if (secondNum.doubleValue() != 0){
+                    result = firstNum.doubleValue() / secondNum.doubleValue();
                 } else {
                     return Optional.ofNullable(null);
                 }
@@ -57,7 +57,7 @@ public class Calculator {
         System.out.println("연산 기록: " + history);
     }
 
-    public void setHistory(int indexNum, int newNum) {
+    public void setHistory(int indexNum, Double newNum) {
         history.set(indexNum, newNum);
         System.out.println("수정 완료.");
     }

@@ -5,47 +5,40 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+
         // 스캐너 객체 생성
         Scanner scanner = new Scanner(System.in);
 
         // 변수 선언
-        int firstNum; // 첫 번째 정수
-        int secondNum; // 두 번째 정수
+        InputNum<Double> firstNum = new InputNum<>(); // 첫 번째 정수
+        InputNum<Double> secondNum = new InputNum<>(); // 두 번째 정수
         char operator; // 사칙연산 기호
-        int result;
+        double result;
         String exit; // 종료 확인
 
         // Calculator 인스턴스 생성
-        Calculator calculator = new Calculator();
+        Calculator<Double> calculator = new Calculator<>();
 
         while (true) {
             // 양의 정수 입력 받기
             while(true){
                 System.out.print("첫 번째 숫자를 입력하세요: ");
-                if (scanner.hasNextInt()){
-                    firstNum = scanner.nextInt();
-                    if (firstNum < 0) {
-                        System.out.println("양의 정수가 아닙니다.");
-                    } else {
-                        break;
-                    }
-                } else {
-                    System.out.println("잘못된 입력입니다.");
+                try {
+                    firstNum.setNum(scanner.nextDouble());
+                    break;
+                } catch (Exception e) {
+                    System.out.println("숫자가 아닙니다.");
                     scanner.next();
                 }
             }
 
             while(true){
                 System.out.print("두 번째 숫자를 입력하세요: ");
-                if (scanner.hasNextInt()){
-                    secondNum = scanner.nextInt();
-                    if (secondNum < 0) {
-                        System.out.println("양의 정수가 아닙니다.");
-                    } else {
-                        break;
-                    }
-                } else {
-                    System.out.println("잘못된 입력입니다.");
+                try {
+                    secondNum.setNum(scanner.nextDouble());
+                    break;
+                } catch (Exception e) {
+                    System.out.println("숫자가 아닙니다.");
                     scanner.next();
                 }
             }
@@ -66,7 +59,8 @@ public class App {
             }
 
             // 연산
-            Optional<Integer> calculate = calculator.calculate(firstNum, secondNum, operator);
+            Optional<Double> calculate = calculator.calculate(firstNum.getNum(), secondNum.getNum(), operator);
+
             // 결과값 출력
             if (calculate.isPresent()) {
                 result = calculate.get();
@@ -89,7 +83,7 @@ public class App {
         }
 
         // Setter 사용
-        calculator.setHistory(0, 0);
+        calculator.setHistory(0, 0.0);
         calculator.getHistory();
 
         // 연산 결과 삭제 메서드
