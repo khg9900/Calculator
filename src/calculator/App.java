@@ -65,10 +65,10 @@ public class App {
             Optional<Double> calculate = calculator.calculate(firstNum.getNum(), secondNum.getNum(), operator);
 
             // 결과값 출력
-            if (calculate.isPresent()) {
+            try {
                 result = calculate.get();
                 System.out.println("결과: " + result);
-            } else {
+            } catch (Exception e) {
                 System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
                 continue;
             }
