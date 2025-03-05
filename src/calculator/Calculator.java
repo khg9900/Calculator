@@ -62,8 +62,17 @@ public class Calculator <T extends Number> {
         System.out.println("수정 완료.");
     }
 
-    public void removeResult() {
+    public void removeHistory() {
         history.remove(0);
         System.out.println("첫 번째 연산 기록이 삭제되었습니다.");
+    }
+
+    public void findHistory(Double findNum) {
+
+        List<Double> findHistory = history.stream()
+                .filter(historyNum -> historyNum > findNum)
+                .sorted()
+                .toList();
+        System.out.println("조회 결과: " + findHistory);
     }
 }

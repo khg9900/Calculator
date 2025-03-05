@@ -10,11 +10,12 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         // 변수 선언
-        InputNum<Double> firstNum = new InputNum<>(); // 첫 번째 정수
-        InputNum<Double> secondNum = new InputNum<>(); // 두 번째 정수
+        InputNum<Double> firstNum = new InputNum<>(); // 첫 번째 수
+        InputNum<Double> secondNum = new InputNum<>(); // 두 번째 수
         char operator; // 사칙연산 기호
-        double result;
+        double result; // 연산 결과 저장
         String exit; // 종료 확인
+        double findNum; // 연산 결과 조회 기준
 
         // Calculator 인스턴스 생성
         Calculator<Double> calculator = new Calculator<>();
@@ -87,7 +88,12 @@ public class App {
         calculator.getHistory();
 
         // 연산 결과 삭제 메서드
-        calculator.removeResult();
+        calculator.removeHistory();
         calculator.getHistory();
+
+        // 연산 결과 조회 메서드
+        System.out.print("입력한 값보다 큰 연산 기록을 출력합니다: ");
+        findNum = scanner.nextDouble();
+        calculator.findHistory(findNum);
     }
 }
