@@ -1,5 +1,7 @@
 package calculator;
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -29,7 +31,7 @@ public class App {
                 try {
                     firstNum.setNum(scanner.nextDouble());
                     break;
-                } catch (Exception e) {
+                } catch (InputMismatchException e) {
                     System.out.println("숫자가 아닙니다.");
                     scanner.next();
                 }
@@ -40,7 +42,7 @@ public class App {
                 try {
                     secondNum.setNum(scanner.nextDouble());
                     break;
-                } catch (Exception e) {
+                } catch (InputMismatchException e) {
                     System.out.println("숫자가 아닙니다.");
                     scanner.next();
                 }
@@ -68,7 +70,7 @@ public class App {
             try {
                 result = calculate.get();
                 System.out.println("결과: " + result);
-            } catch (Exception e) {
+            } catch (NoSuchElementException e) {
                 System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
                 continue;
             }
