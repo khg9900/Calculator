@@ -17,14 +17,9 @@ public class Calculator <T extends Number> {
 
         // 초기화
         double result = 0;
-        OperatorType op = OperatorType.PLUS;
 
         // 입력받은 문자열을 enum 상수로 치환
-        for (OperatorType type : OperatorType.values()) {
-            if (type.getOperatorType().equals(String.valueOf(String.valueOf(operator)))) {
-                op = OperatorType.valueOf(type.name());
-            }
-        }
+        OperatorType op = OperatorType.fromChar(operator);
 
         // 연산 - enum을 활용한 switch 문
         switch (op) {
